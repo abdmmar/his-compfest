@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import styles from './Button.module.scss'
+import styles from './ButtonIcon.module.scss'
 
-export default function Button({secondary = false, children, ...props}) {
+export default function ButtonIcon({secondary = false, children, ...props}) {
   return (
     <button
       className={cn({
@@ -16,7 +16,7 @@ export default function Button({secondary = false, children, ...props}) {
   )
 }
 
-Button.propTypes = {
+ButtonIcon.propTypes = {
   secondary: PropTypes.bool,
   children: PropTypes.node,
   props: PropTypes.any,

@@ -1,0 +1,48 @@
+@import 'styles/variables';
+
+.card {
+  width: 100%;
+  padding: $padding-m;
+  background-color: $background-color-white;
+  border-radius: 3px;
+}
+
+.cardTitle {
+  margin-top: 0;
+}
+
+.cardDesc {
+  margin-top: 0;
+}
+
+.cardCount {
+  color: $text-color-secondary;
+}
+
+.cardCountNum {
+  padding: 5px;
+  background-color: $background-color-gray;
+  border-radius: 2px;
+}
+
+.cardAction {
+  & button {
+    width: 100%;
+  }
+}
+.patientContainer {
+  display: none;
+  color: $text-color-secondary;
+}
+
+.patientTitle {
+  margin-top: 0;
+}
+
+.patients {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $gap-s;
+}

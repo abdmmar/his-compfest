@@ -1,0 +1,39 @@
+@import 'styles/variables';
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: $max-width;
+  padding: 1em 1em;
+  background-color: #ffffff;
+}
+
+.navigation {
+  display: flex;
+  gap: $gap-l;
+}
+
+.link {
+  display: flex;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  & li a {
+    color: $text-color-primary;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.actionLogout {
+  background-color: $background-color-white;
+}

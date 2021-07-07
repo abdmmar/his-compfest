@@ -1,0 +1,9 @@
+@import '/src/styles/variables.scss';
+
+.copyright {
+  color: $text-color-secondary;
+  border-top: 1px solid #eaeaea;
+  padding: $padding-m;
+  max-width: 940px;
+  width: 100%;
+}
