@@ -1,0 +1,20 @@
+@import '/src/styles/variables.scss';
+
+.button {
+  border: 0;
+  height: fit-content;
+  padding: $padding-s $padding-l;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 3px;
+  background-color: $color-primary;
+  will-change: background-color;
+  transition: background-color 400ms;
+
+  &:hover {
+    background-color: $color-primary-dark;
+    transition: background-color 125ms;
+    box-shadow: 0px 5px 15px 0px hsla(212, 78%, 58%, 0.35);
+  }
+}

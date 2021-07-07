@@ -1,0 +1,60 @@
+@import 'styles/variables';
+
+.login {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContainer {
+  max-width: 350px;
+  text-align: left;
+  background-color: $background-color-white;
+  border-radius: 3;
+  padding: $padding-l;
+}
+
+.loginTitle {
+  margin-top: 0;
+}
+
+.loginDesc {
+  color: $text-color-secondary;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  margin: $margin-m 0;
+  text-align: left;
+
+  & label {
+    margin: $margin-s 0;
+  }
+
+  & input {
+    padding: $padding-s;
+  }
+}
+
+.sectionBtn {
+  margin: 0;
+  margin-top: $margin-l;
+  width: 100%;
+
+  & button {
+    width: 100%;
+  }
+}
+
+.link {
+  text-align: center;
+}
+
+.error {
+  margin: 0;
+  margin-top: $margin-s;
+  font-size: 0.9em;
+  color: rgb(211, 28, 28);
+}

@@ -1,24 +1,33 @@
-import logo from './logo.svg'
-import 'styles/App.scss'
+import {Toaster} from 'react-hot-toast'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {ErrorBoundary} from 'react-error-boundary'
+
+import {Login, Register} from 'pages/'
+import ErrorFallback from 'components/Error/Error'
+import styles from 'styles/App.module.scss'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className={styles.app}>
+        <Router>
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onReset={() => {
+              window.location.reload()
+            }}
+          >
+            <main>
+              <Switch>
+                <Route path="/" exact component={Login} />
+                <Route path="/register" exact component={Register} />
+              </Switch>
+            </main>
+          </ErrorBoundary>
+        </Router>
+      </div>
+      <Toaster />
+    </>
   )
 }
 
