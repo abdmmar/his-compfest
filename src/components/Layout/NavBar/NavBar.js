@@ -20,13 +20,12 @@ export default function NavBar() {
     <nav className={styles.navbar}>
       <div className={styles.navigation}>
         <Link to="/" className={styles.link}>
-          {/* <img
-            src="/static/logo.png"
-            alt="Big Data, Artificial Intelligence, and Cyber Security Logo"
-            width="70"
-            height="35"
-          /> */}
-          <strong>HIS</strong>
+          <img
+            src="/favicon.png"
+            alt="Healthcare Information System Logo"
+            width="28px"
+            height="28px"
+          />
         </Link>
         <ul className={styles.menu}>
           <li>

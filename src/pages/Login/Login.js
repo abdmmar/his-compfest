@@ -45,7 +45,15 @@ const Login = () => {
   return (
     <div className={styles.login}>
       <div className={styles.loginContainer}>
-        <h3 className={styles.loginTitle}>Login</h3>
+        <div className={styles.loginHeader}>
+          <img
+            src="/favicon.png"
+            alt="Healthcare Information System Logo"
+            width="28px"
+            height="28px"
+          />
+          <h3 className={styles.loginTitle}>Login</h3>
+        </div>
         <p className={styles.loginDesc}>Please login to make an appointment</p>
         <Formik
           initialValues={{username: '', password: ''}}

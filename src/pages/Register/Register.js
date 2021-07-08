@@ -46,7 +46,15 @@ const Register = () => {
   return (
     <div className={styles.register}>
       <div className={styles.registerContainer}>
-        <h3 className={styles.registerTitle}>Register</h3>
+        <div className={styles.registerHeader}>
+          <img
+            src="/favicon.png"
+            alt="Healthcare Information System Logo"
+            width="28px"
+            height="28px"
+          />
+          <h3 className={styles.registerTitle}>Register</h3>
+        </div>
         <p className={styles.registerDesc}>
           Sign up to Healthcare Information System to apply an appointment
         </p>
