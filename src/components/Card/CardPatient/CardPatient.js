@@ -4,8 +4,8 @@ import {useQueryClient, useMutation} from 'react-query'
 import toast from 'react-hot-toast'
 
 import {Button} from 'components/Button'
-import styles from './CardPatient.module.scss'
 import {AuthContext} from 'context/AuthContext'
+import styles from './CardPatient.module.scss'
 
 export default function CardPatient({data}) {
   const {_id, doctor_name, description, registrant_list = []} = data

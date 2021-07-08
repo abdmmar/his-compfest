@@ -29,8 +29,9 @@ export default function Dashboard() {
 
         if (err.message.includes('jwt')) {
           logout()
-          toast.dismiss(error)
         }
+
+        toast.dismiss(error)
       })
   })
 

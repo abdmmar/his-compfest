@@ -91,6 +91,10 @@ input {
   display: none;
 }
 
+[data-reach-dialog-content] {
+  border-radius: 3px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :focus {
     transition: outline-offset 0.25s ease;
