@@ -1,0 +1,24 @@
+@import 'styles/variables';
+
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-l;
+  align-items: center;
+  margin: $margin-m;
+}
+
+.errorTitle {
+  margin: 0;
+}
+
+.errorDesc {
+  margin: $margin-s;
+}

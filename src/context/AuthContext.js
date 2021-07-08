@@ -4,7 +4,11 @@ import decode from 'jwt-decode'
 import toast from 'react-hot-toast'
 import {useHistory} from 'react-router'
 
-const URL = 'http://localhost:9191'
+const URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_URL_API_DEV
+    : process.env.REACT_APP_URL_API
+
 const TOKEN = localStorage.getItem('JWT_TOKEN')
 
 export const AuthContext = React.createContext({})
