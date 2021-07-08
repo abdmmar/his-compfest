@@ -87,12 +87,19 @@ input {
   padding: $padding-s;
 }
 
+textarea {
+  padding: $padding-s;
+  font-family: 'Inter', sans-serif;
+  resize: none;
+}
+
 [hidden] {
   display: none;
 }
 
 [data-reach-dialog-content] {
   border-radius: 3px;
+  max-width: 400px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

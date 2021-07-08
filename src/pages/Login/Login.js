@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
-import {useQueryClient, useMutation} from 'react-query'
+import {useMutation} from 'react-query'
 import toast from 'react-hot-toast'
 
 import {Button} from 'components/Button'
@@ -10,7 +10,6 @@ import {LoginSchema} from 'utils/schema'
 import styles from './Login.module.scss'
 
 const Login = () => {
-  const queryCache = useQueryClient()
   const history = useHistory()
 
   const {login} = React.useContext(AuthContext)
@@ -59,7 +58,7 @@ const Login = () => {
               <Field type="text" id="username" name="username" />
               <ErrorMessage
                 name="username"
-                render={(msg) => <div className={styles.error}>{msg}</div>}
+                render={(msg) => <small className={styles.error}>{msg}</small>}
               />
             </section>
 
@@ -68,7 +67,7 @@ const Login = () => {
               <Field type="password" id="password" name="password" />
               <ErrorMessage
                 name="password"
-                render={(msg) => <div className={styles.error}>{msg}</div>}
+                render={(msg) => <small className={styles.error}>{msg}</small>}
               />
             </section>
 

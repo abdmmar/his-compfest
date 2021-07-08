@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
-import {useQueryClient, useMutation} from 'react-query'
+import {useMutation} from 'react-query'
 import toast from 'react-hot-toast'
 
 import {Button} from 'components/Button'
@@ -10,7 +10,6 @@ import {AuthContext} from 'context/AuthContext'
 import styles from './Register.module.scss'
 
 const Register = () => {
-  const queryCache = useQueryClient()
   const history = useHistory()
 
   const {register} = React.useContext(AuthContext)
@@ -70,7 +69,9 @@ const Register = () => {
                 <Field type="text" id="first_name" name="first_name" />
                 <ErrorMessage
                   name="first_name"
-                  render={(msg) => <div className={styles.error}>{msg}</div>}
+                  render={(msg) => (
+                    <small className={styles.error}>{msg}</small>
+                  )}
                 />
               </div>
               <div>
@@ -78,7 +79,9 @@ const Register = () => {
                 <Field type="text" id="last_name" name="last_name" />
                 <ErrorMessage
                   name="last_name"
-                  render={(msg) => <div className={styles.error}>{msg}</div>}
+                  render={(msg) => (
+                    <small className={styles.error}>{msg}</small>
+                  )}
                 />
               </div>
             </section>
@@ -88,7 +91,7 @@ const Register = () => {
               <Field type="email" id="email" name="email" />
               <ErrorMessage
                 name="email"
-                render={(msg) => <div className={styles.error}>{msg}</div>}
+                render={(msg) => <small className={styles.error}>{msg}</small>}
               />
             </section>
 
@@ -98,7 +101,9 @@ const Register = () => {
                 <Field type="text" id="username" name="username" />
                 <ErrorMessage
                   name="username"
-                  render={(msg) => <div className={styles.error}>{msg}</div>}
+                  render={(msg) => (
+                    <small className={styles.error}>{msg}</small>
+                  )}
                 />
               </div>
 
@@ -107,7 +112,9 @@ const Register = () => {
                 <Field type="number" id="age" name="age" min="0" />
                 <ErrorMessage
                   name="age"
-                  render={(msg) => <div className={styles.error}>{msg}</div>}
+                  render={(msg) => (
+                    <small className={styles.error}>{msg}</small>
+                  )}
                 />
               </div>
             </section>
@@ -117,7 +124,7 @@ const Register = () => {
               <Field type="password" id="password" name="password" />
               <ErrorMessage
                 name="password"
-                render={(msg) => <div className={styles.error}>{msg}</div>}
+                render={(msg) => <small className={styles.error}>{msg}</small>}
               />
             </section>
 

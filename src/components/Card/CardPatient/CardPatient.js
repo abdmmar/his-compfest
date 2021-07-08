@@ -9,7 +9,7 @@ import styles from './CardPatient.module.scss'
 
 export default function CardPatient({data}) {
   const {_id, doctor_name, description, registrant_list = []} = data
-  const list_length = registrant_list.length
+  const list_length = registrant_list?.length
   const queryCache = useQueryClient()
   const {user, request} = React.useContext(AuthContext)
 
@@ -72,9 +72,12 @@ export default function CardPatient({data}) {
   })
 
   let registrant_user_id = -1
-  for (const registrant of registrant_list) {
-    if (registrant.user_id === user.id) {
-      registrant_user_id = registrant.user_id
+
+  if (user != null) {
+    for (const registrant of registrant_list) {
+      if (registrant?.user_id === user?.id) {
+        registrant_user_id = registrant?.user_id
+      }
     }
   }
 

@@ -53,3 +53,35 @@
   align-items: center;
   justify-content: center;
 }
+
+.section {
+  display: flex;
+  flex-direction: column;
+  margin: $margin-m 0;
+  text-align: left;
+
+  & label {
+    margin: $margin-s 0;
+  }
+
+  & input {
+    padding: $padding-s;
+  }
+}
+
+.sectionBtn {
+  margin: 0;
+  margin-top: $margin-l;
+  width: 100%;
+
+  & button {
+    width: 100%;
+  }
+}
+
+.error {
+  margin: 0;
+  margin-top: $margin-s;
+  font-size: 0.9em;
+  color: rgb(211, 28, 28);
+}

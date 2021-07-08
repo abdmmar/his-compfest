@@ -1,6 +1,8 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import decode from 'jwt-decode'
+import toast from 'react-hot-toast'
+import {useHistory} from 'react-router'
 
 const URL = 'http://localhost:9191'
 const TOKEN = localStorage.getItem('JWT_TOKEN')
@@ -9,6 +11,7 @@ export const AuthContext = React.createContext({})
 
 export default function AuthProvider({children}) {
   const [user, setUser] = React.useState(TOKEN != null ? decode(TOKEN) : null)
+  const history = useHistory()
 
   const register = async (data) => {
     const options = {
@@ -78,6 +81,9 @@ export default function AuthProvider({children}) {
 
     // Check if token is expired
     if (data.exp == null && data.exp < now) {
+      toast.error('Token is expired')
+      logout()
+      history.push('/')
       return false
     }
 

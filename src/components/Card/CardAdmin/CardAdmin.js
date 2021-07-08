@@ -1,22 +1,27 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import {useQueryClient, useMutation} from 'react-query'
+import {Formik, Form, Field, ErrorMessage} from 'formik'
 import toast from 'react-hot-toast'
 import {Dialog} from '@reach/dialog'
 import '@reach/dialog/styles.css'
 
+import {DialogHeader} from 'components/Layout'
 import {Button} from 'components/Button'
-import {ReactComponent as Close} from 'components/Icon/Close.svg'
 import {AuthContext} from 'context/AuthContext'
+import {AppointmentSchema} from 'utils/schema'
 import styles from './CardAdmin.module.scss'
-import {ButtonIcon} from 'components/Button'
 
 export default function CardAdmin({data}) {
   const [showDialog, setShowDialog] = React.useState(false)
   const {logout, request} = React.useContext(AuthContext)
-  const {_id, doctor_name, description, registrant_list = []} = data
+  let {_id, doctor_name, description, registrant_list = []} = data
 
   const queryCache = useQueryClient()
+
+  const open = () => setShowDialog(true)
+  const close = () => setShowDialog(false)
 
   const deleteMutation = useMutation((appointment_id) => {
     const options = {
@@ -25,13 +30,48 @@ export default function CardAdmin({data}) {
 
     const loading = toast.loading('Deleting')
 
-    return request(`/appointment/delete/${appointment_id}`, options)
+    return request(`/appointment/${appointment_id}`, options)
       .then((result) => {
         if (result.status === 200) {
           toast.success('Deleted!')
           toast.dismiss(loading)
 
           queryCache.invalidateQueries('appointments')
+
+          return result.data
+        } else {
+          toast.error(result.message)
+          toast.dismiss(loading)
+        }
+      })
+      .catch((err) => {
+        const error = toast(`${err.message}`)
+
+        if (err.message.includes('jwt')) {
+          logout()
+        }
+
+        toast.dismiss(error)
+      })
+  })
+
+  const editMutation = useMutation((data) => {
+    const options = {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }
+    const loading = toast.loading('Editing appointment')
+
+    return request('/appointment', options)
+      .then((result) => {
+        if (result.status === 200) {
+          toast.success('Appointment edited!')
+
+          queryCache.invalidateQueries('appointments')
+          setTimeout(() => {
+            close()
+            toast.dismiss(loading)
+          }, 500)
 
           return result.data
         } else {
@@ -69,8 +109,9 @@ export default function CardAdmin({data}) {
     ))
   }
 
-  const open = () => setShowDialog(true)
-  const close = () => setShowDialog(false)
+  const handleEditAppointment = (value) => {
+    editMutation.mutate({id: _id, ...value})
+  }
 
   return (
     <>
@@ -87,7 +128,7 @@ export default function CardAdmin({data}) {
                     key={registranst.user_id}
                     value={registranst.first_name}
                   >
-                    {registranst.first_name}
+                    {`${registranst.first_name} ${registranst.last_name}`}
                   </option>
                 )
               })
@@ -112,12 +153,55 @@ export default function CardAdmin({data}) {
         onDismiss={close}
         aria-label="Edit Appointment"
       >
-        <div className={styles.dialogHeader}>
-          <h4 className={styles.dialogHeaderTitle}>Edit Appointment</h4>
-          <ButtonIcon onClick={close} secondary={true}>
-            <Close color="rgb (255,255,255)" />
-          </ButtonIcon>
-        </div>
+        <DialogHeader title="Edit appointment" onClick={close} />
+        <Formik
+          initialValues={{doctor_name: doctor_name, description: description}}
+          validationSchema={AppointmentSchema}
+          onSubmit={(value) => handleEditAppointment(value)}
+        >
+          {(props) => (
+            <Form className={styles.form}>
+              <section className={styles.section}>
+                <label htmlFor="doctor_name">Doctor Name</label>
+                <Field
+                  type="text"
+                  id="doctor_name"
+                  name="doctor_name"
+                  value={props.values.doctor_name}
+                  onChange={props.handleChange}
+                />
+                <ErrorMessage
+                  name="doctor_name"
+                  render={(msg) => (
+                    <small className={styles.error}>{msg}</small>
+                  )}
+                />
+              </section>
+
+              <section className={styles.section}>
+                <label htmlFor="description">Description</label>
+                <Field
+                  component="textarea"
+                  rows="5"
+                  id="description"
+                  name="description"
+                  value={props.values.description}
+                  onChange={props.handleChange}
+                />
+                <ErrorMessage
+                  name="description"
+                  render={(msg) => (
+                    <small className={styles.error}>{msg}</small>
+                  )}
+                />
+              </section>
+
+              <div className={styles.sectionBtn}>
+                <Button type="submit">Edit Appointment</Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Dialog>
     </>
   )
