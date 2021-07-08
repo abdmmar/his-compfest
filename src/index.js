@@ -1,12 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'styles/index.scss'
+import {QueryClient, QueryClientProvider} from 'react-query'
+
+import AuthProvider from 'context/AuthContext'
 import App from './App'
+
+import 'styles/index.scss'
 import reportWebVitals from 'utils/reportWebVitals'
+
+const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

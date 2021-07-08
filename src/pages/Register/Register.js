@@ -1,13 +1,47 @@
-import {Link} from 'react-router-dom'
+import * as React from 'react'
+import {Link, useHistory} from 'react-router-dom'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {useQueryClient, useMutation} from 'react-query'
+import toast from 'react-hot-toast'
 
 import {Button} from 'components/Button'
 import {RegisterSchema} from 'utils/schema'
+import {AuthContext} from 'context/AuthContext'
 import styles from './Register.module.scss'
 
 const Register = () => {
+  const queryCache = useQueryClient()
+  const history = useHistory()
+
+  const {register} = React.useContext(AuthContext)
+
+  const mutation = useMutation(['register'], (data) => {
+    const loading = toast.loading('Registering')
+
+    return register(data)
+      .then((result) => {
+        console.log(result)
+        if (result.status === 200) {
+          toast.success('Registered!')
+          toast.dismiss(loading)
+
+          history.push('/')
+
+          return result.data
+        } else {
+          toast.error(result.message)
+          toast.dismiss(loading)
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message)
+        toast.dismiss(loading)
+        return err
+      })
+  })
+
   const handleRegister = (val) => {
-    console.log(val)
+    mutation.mutate(val)
   }
 
   return (
@@ -19,8 +53,8 @@ const Register = () => {
         </p>
         <Formik
           initialValues={{
-            firstname: '',
-            lastname: '',
+            first_name: '',
+            last_name: '',
             email: '',
             age: '',
             username: '',
@@ -32,18 +66,18 @@ const Register = () => {
           <Form className={styles.form}>
             <section className={styles.sectionGroup}>
               <div>
-                <label htmlFor="firstname">First name</label>
-                <Field type="text" id="firstname" name="firstname" />
+                <label htmlFor="first_name">First name</label>
+                <Field type="text" id="first_name" name="first_name" />
                 <ErrorMessage
-                  name="firstname"
+                  name="first_name"
                   render={(msg) => <div className={styles.error}>{msg}</div>}
                 />
               </div>
               <div>
-                <label htmlFor="lastname">Last name</label>
-                <Field type="text" id="lastname" name="lastname" />
+                <label htmlFor="last_name">Last name</label>
+                <Field type="text" id="last_name" name="last_name" />
                 <ErrorMessage
-                  name="lastname"
+                  name="last_name"
                   render={(msg) => <div className={styles.error}>{msg}</div>}
                 />
               </div>
@@ -70,7 +104,7 @@ const Register = () => {
 
               <div>
                 <label htmlFor="age">Age</label>
-                <Field type="number" id="age" name="age" />
+                <Field type="number" id="age" name="age" min="0" />
                 <ErrorMessage
                   name="age"
                   render={(msg) => <div className={styles.error}>{msg}</div>}

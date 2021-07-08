@@ -1,4 +1,4 @@
-import Error from './Error'
+import ErrorFallback from './ErrorFallback'
 import ErrorMessageInput from './ErrorMessageInput'
 
-export {Error, ErrorMessageInput}
+export {ErrorFallback, ErrorMessageInput}
