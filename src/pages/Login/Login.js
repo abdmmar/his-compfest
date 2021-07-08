@@ -20,7 +20,6 @@ const Login = () => {
 
     return login(data)
       .then((result) => {
-        console.log(result)
         if (result.status === 200) {
           toast.success('Authenticated!')
           toast.dismiss(loading)

@@ -123,13 +123,13 @@ export default function AuthProvider({children}) {
     return null
   }
 
-  const request = async (options) => {
+  const request = async (endpoint, options) => {
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${getToken()}`,
     }
 
-    const res = await fetch(URL, {headers, ...options})
+    const res = await fetch(`${URL}${endpoint}`, {headers, ...options})
     const result = await res.json()
 
     if (result.type !== 'success' || result.status !== 200)
