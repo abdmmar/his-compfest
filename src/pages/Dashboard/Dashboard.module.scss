@@ -41,6 +41,11 @@
   margin: 0;
 }
 
+.mainHeaderAction {
+  display: flex;
+  align-items: center;
+}
+
 .mainContent {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -84,4 +89,19 @@
   margin-top: $margin-s;
   font-size: 0.9em;
   color: rgb(211, 28, 28);
+}
+
+@media screen and (max-width: 425px) {
+  .mainContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: $gap-l;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .mainContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }

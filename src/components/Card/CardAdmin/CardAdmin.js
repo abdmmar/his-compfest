@@ -133,7 +133,7 @@ export default function CardAdmin({data}) {
                 )
               })
             ) : (
-              <option value="" selected disabled hidden>
+              <option value="" defaultValue disabled hidden>
                 No Registrant
               </option>
             )}
