@@ -3,6 +3,11 @@
 Healthcare Information System Website for Software Engineering Academy
 COMPFEST 13.
 
+Login as Admin:
+
+- username: admin
+- password: admin123
+
 ## Prerequisites
 
 1. [yarn](https://yarnpkg.com/)
