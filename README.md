@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Healthcare Information System Website COMPFEST 13
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Healthcare Information System Website for Software Engineering Academy
+COMPFEST 13.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+1. [yarn](https://yarnpkg.com/)
 
-### `yarn start`
+## Running Locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+$ git clone https://github.com/abdmmar/his-compfest.git
+$ cd his-compfest
+$ yarn
+$ yarn start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Don't forget to change `.env.example` to `.env` and configure the variable to
+match your API server url.
 
-### `yarn test`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the
+result.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can start develop the page by modifying file inside `src` folder. The page
+auto-updates as you edit the file.
 
-### `yarn build`
+## Deploy on Vercel
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fabdmmar%2Fhis-compfest)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `public/` - Contains icon and `index.html`
+- `src/components` - Contains frequently used components on the page
+- `src/context` - Contains React context to use accross component
+- `src/pages` - Contains all page
+- `src/styles` - Contains global styling and variables
+- `src/test` - Contains test configurations, although there is no test yet
+- `src/utils` - Helper functions
 
-### `yarn eject`
+## Built using
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [SASS](https://sass-lang.com/) and
+  [CSS Modules](https://github.com/css-modules/css-modules) for styling ->
+  style.module.scss. It's basically same as CSS
+- [React Router](https://reactrouter.com/) for routing.
+- [Reach UI/Dialog](https://reach.tech/dialog) is a React component for create
+  an accessible dialog or "modal" window.
+- [react-query](https://react-query.tanstack.com/) for fetching data.
+- [react-error-boundary](https://www.npmjs.com/package/react-error-boundary) for
+  Handling breaking error in spesific component/page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Development Dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Eslint + Prettier for Static analysis to avoid typo/syntax error
+- Husky is a git hooks, for example we run `git commit` it's run pre-commit
+  hooks to lint and format document before commit to repository
+- lint-staged to run linter and prettier
 
-## Learn More
+## Contributors
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Abdullah Ammar** - Initial work - [Github](https://github.com/abdmmar)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
